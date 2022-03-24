@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Tuan4_PhamVanAn_1911067260.Models.Giohang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GioHang</h2>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.tensach) </th>
+        <th>@Html.DisplayNameFor(model => model.hinh) </th>
+        <th>@Html.DisplayNameFor(model => model.giaban) </th>
+        <th>@Html.DisplayNameFor(model => model.isoluong) </th>
+        <th>@Html.DisplayNameFor(model => model.dThanhtien) </th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @Html.DisplayFor(modelItem => item.tensach)</td>
+            <td><img src="@item.hinh" width="180" /></td>
+            @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.masach }))
+            {
+                <td>@String.Format("{0:0,0}", item.giaban) VND</td>
+                <td><input type="number" min="1" name="txtSoLg" value="@item.isoluong" /></td>
+                <td>@Html.DisplayFor(modelItem => item.dThanhtien)</td>
+                <td><a href="@Url.Action("Detail","Sach",new { id = item.masach })">/chi tiet</a>| @Html.ActionLink("Xoa", "XoaGioHang", new { @id = item.masach })</td>
+                <td><input type="submit" value="Cap nhat" class="btn btn-success" /></td>
+            }
+
+        </tr>
+    }
+    <tr style="font-weight:bold; text-align:left; color:red">
+        <td colspan="2"> So loai sach:@ViewBag.Tongsoluongsanpham</td>
+        <td colspan="2"> So luong sach: @ViewBag.Tongsoluong</td>
+        <td colspan="4"> Tong tien: @String.Format("{0:0,0}", ViewBag.Tongtien)VND</td>
+    </tr>
+    <tr style="font-weight:bold; color:blue;text-align:right">
+        <td colspan="5">
+            @Html.ActionLink("Xoa gio hang", "Xoa tat ca gio hang")
+        </td>
+    </tr>
+    <tr style="font-weight:bold; color:yellow; text-align:right">
+        <td colspan="5">
+            @Html.ActionLink("Dat hang", "Dathang", "GioHang")
+        </td>
+    </tr>
+</table>
+

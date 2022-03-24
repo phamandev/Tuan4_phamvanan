@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Tuan4_PhamVanAn_1911067260.Models.Giohang>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DatHang</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.masach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tensach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giaban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isoluong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dThanhtien)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.masach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tensach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giaban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isoluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dThanhtien)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+@using Tuan4_PhamVanAn_1911067260.Models
+<h2 style=" text-align:center">Thong tin dat hang</h2>
+@{ 
+    KhachHang kh = (KhachHang)Session["TaiKhoan"];
+}
+<table align="center">
+    @using (Html.BeginForm())
+    {
+    @Html.ValidationSummary(true)
+    <tr style="height:40px">
+        <td>Ho ten khach hang:</td>
+        <td style="font-weight:bold">@kh.hoten</td>
+    </tr>
+    <tr style="height:40px">
+    <td>Email:</td>
+    <td style="font-weight:bold">@kh.email</td>
+    </tr>
+    <tr style="height:40px">
+    <td>Dia chi:</td>
+    <td style="font-weight:bold">@kh.diachi</td>
+    </tr>
+    <tr style="height:40px">
+    <td>dienthoai:</td>
+    <td style="font-weight:bold">@kh.dienthoai</td>
+    </tr>
+   <tr style="height:40px">
+    <td>ngaydat:</td>
+    <td style="font-weight:bold">@DateTime.Now.ToShortDateString() </td>
+    </tr>
+    <tr style="height:40px">
+    <td>ngaygiao:</td>
+    <td style="font-weight:bold"><input type="date" name="NgayGiao" /></td>
+    </tr>
+    <tr style="height:40px">
+    <td></td>
+    <td style="font-weight:bold"><input type="submit" value="Xac nhan" class="btn btn-success" /></td>
+    </tr>
+    }
+</table>
